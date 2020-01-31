@@ -24,7 +24,7 @@ class FileObserver
         edited_files << cur_file
       end
     end
-    edited_files
+    return edited_files
   end
 
 end
