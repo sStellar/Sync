@@ -14,7 +14,12 @@ class FileObserver
   end
 
   def getFiles
-    @all_files = Dir.glob('**/*')
+    Dir.glob('**/*').each do |cur_file|
+      if File.file?(cur_file)
+        @all_files << cur_file
+      end
+    end
+    return @all_files
   end
 
   def getEdited
@@ -32,8 +37,7 @@ end
 x = FileObserver.new
 p x.getFiles
 print_h x.getModTimes
-puts "edited #{x.getEdited}"
 while true
-  gets
   puts "edited #{x.getEdited}"
+  gets
 end
