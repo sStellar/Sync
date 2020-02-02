@@ -44,7 +44,7 @@ def print_h(input)
   print_hash(input)
 end
 
-def print_a(array, *extra)
+def print_a(array = [], *extra)
   s = 0
   i = 0
   while i < array.length
