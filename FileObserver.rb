@@ -35,6 +35,10 @@ class FileObserver
     return temp_edited
   end
 
+  def getEditedArr()
+    return @edited_files
+  end
+
   def refreshFiles
     getFiles
     getModTimes
@@ -45,43 +49,41 @@ class FileObserver
       "clear (c) - Clear the screen",
       "all (a) - Prints and refreshes all files in current directory",
       "modified (m) - Prints and refreshes last modified times for files since files were last refreshed",
-      "edited (e) - Starts edited function, any files edited since modified times was last refreshed",
-      "refres (r) - Refreshes files and modified times, doesn't print anything"]
+      "edited (e) - Starts thread for edited files",
+      "refresh (r) - Refreshes files and modified times, doesn't print anything"]
   end
 
-  def commands(input)
-    case input
-    when "all", "a"
-      puts getFiles()
-    when "refresh", "r"
-      refreshFiles
-    when "modified", "m"
-      print_h getModTimes()
-    when "edited", "e"
-      puts "Enter 'exit' to exit, regular commands work too"
-      while true
-        p getEdited
-        e_input = gets.chomp
-        if e_input === ""
-        elsif e_input == "exit"
-          break
-        else
-          commands(e_input)
-        end
-      end
-    when "clear", "c"
-      clear()
-    when "help", "h"
-      helpMenu()
-    else
-      puts "Sorry that doesnt seem to be a command, type 'help' to see available commands"
-    end
-  end
 end
 
 x = FileObserver.new
 x.helpMenu
 while true
   input = gets.chomp
-  x.commands(input)
+  case input
+  when "all", "a"
+    puts x.getFiles()
+  when "refresh", "r"
+    x.refreshFiles()
+  when "modified", "m"
+    print_h x.getModTimes()
+  when "edited", "e"
+    Thread.new do
+      puts "Edited files thread started."
+      edited_files = []
+      while true
+        x.getEdited
+        edited_files = x.getEditedArr
+        if edited_files != []
+          p edited_files
+        end
+        sleep (3)
+      end
+    end
+  when "clear", "c"
+    clear()
+  when "help", "h"
+    x.helpMenu()
+  else
+    puts "Sorry that doesnt seem to be a command, type 'help' to see available commands"
+  end
 end
