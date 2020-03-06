@@ -47,15 +47,6 @@ class FileObserver
     getModTimes
   end
 
-  def helpMenu()
-    puts ["help (h) - Prints this help menu",
-      "clear (c) - Clear the screen",
-      "all (a) - Prints and refreshes all files in current directory",
-      "modified (m) - Prints and refreshes last modified times for files since files were last refreshed",
-      "edited (e) - Starts thread for edited files",
-      "refresh (r) - Refreshes files and modified times, doesn't print anything"]
-  end
-
   def readData()
     @yaml_data = YAML.load(File.read('data.yaml'))
   end
@@ -69,7 +60,6 @@ class FileObserver
       "mod_data": mod_data,
       "edited_data": edited_data
     }
-    temp_list = {"te"=>["a","bb","ccc","dddd",["eeeee","ffffff"],"ggggggg"], "st"=>["a","bb",{"test"=>"2"}]}
     File.open("data.yaml", "w") { |file| file.write(save_data.to_yaml) }
   end
 
@@ -77,7 +67,7 @@ class FileObserver
     Thread.new do
       puts "Files inventory thread started."
       while true
-        puts getFiles()
+        getFiles()
         sleep(3)
       end
     end
@@ -96,58 +86,10 @@ class FileObserver
   def editedThread()
     Thread.new do
       puts "Edited files thread started."
-      edited_files = []
       while true
         getEdited()
-        edited_files = @edited_files
-        if edited_files != []
-          p edited_files
-        end
         sleep (3)
       end
     end
-  end
-end
-
-x = FileObserver.new
-x.helpMenu
-while true
-  input = gets.chomp
-  case input
-  when "save", "s"
-    x.saveData
-  when "read", "re"
-    print_h x.readData
-  when "all", "a"
-    Thread.new do
-      puts "Files inventory thread started."
-      while true
-        puts x.getFiles()
-        sleep(3)
-      end
-    end
-  when "refresh", "r"
-    x.refreshFiles()
-  when "modified", "m"
-    print_h x.getModTimes()
-  when "edited", "e"
-    Thread.new do
-      puts "Edited files thread started."
-      edited_files = []
-      while true
-        x.getEdited
-        edited_files = x.getEditedArr
-        if edited_files != []
-          p edited_files
-        end
-        sleep (3)
-      end
-    end
-  when "clear", "c"
-    clear()
-  when "help", "h"
-    x.helpMenu()
-  else
-    puts "Sorry that doesnt seem to be a command, type 'help' to see available commands"
   end
 end

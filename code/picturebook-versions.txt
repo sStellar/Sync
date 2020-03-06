@@ -1,0 +1,45 @@
+picturebook_a
+    The first version only displays a single photo, and consists of the PictureBook,
+    Photo and PhotoView classes.
+
+picturebook_b
+    This version adds the Album and AlbumView classes. The program is now able to
+    display multiple photos (using a matrix layout), but the album is for now
+    programmatically constructed. This version also modifies the PhotoView class
+    so that it scales down the image.
+
+picturebook_c
+    This version modifies the PictureBook class to provide for importing
+    photos into the album from files. Removes hard-coded additions of photos
+    to the album.
+
+picturebook_d
+    This version modifies the AlbumView class to make it a subclass of
+    FXScrollWindow (i.e. a scroll window with a matrix inside).
+
+picturebook_e
+    This version adds the AlbumList and AlbumListView classes. The initialize()
+    method for PictureBook changes to accomodate the list on the left hand side
+    of the main window.
+
+picturebook_f
+    This version changes the main window's layout to a splitter, with the
+    AlbumListView and AlbumView inside.
+
+picturebook_g
+    This version introduces an FXSwitcher as the parent for the album views.
+    
+picturebook_h
+    This version adds serialization/deserialization of the album list.
+    
+TODO?
+
+ * Show how to catch the SEL_CLOSE message from the main window and route that to the exit handler
+ * Show how to ensure that something is initially selected in the list
+ * Show the photo titles
+ * Edit photo titles
+ * Remove albums
+ * Remove photos from albums
+ * Copy photo from one album to another
+ * Move photo from one album to another
+ * Publish to Flickr
