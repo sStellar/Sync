@@ -14,35 +14,36 @@ def helpMenu()
 end
 
 x = FileObserver.new
-x.helpMenu
+helpMenu()
 while true
   begin
-  input = gets.chomp
-  case input
-  when "save", "s"
-    x.saveData
-  when "read", "r"
-    print_h x.readData
-  when "all", "a"
-    x.allFilesThread
-  when "modified", "m"
-    x.modTimesThread
-  when "edited", "e"
-    x.editedThread
-    while true
-      edited_files = x.getEditedArr
-      if edited_files != []
-        p edited_files
+    input = gets.chomp
+    case input
+    when "save", "s"
+      x.saveData
+      puts "Data saved"
+    when "read", "r"
+      print_h x.readData
+    when "all", "a"
+      x.allFilesThread
+    when "modified", "m"
+      x.modTimesThread
+    when "edited", "e"
+      x.editedThread
+      while true
+        edited_files = x.getEditedArr
+        if edited_files != []
+          p edited_files
+        end
+        sleep(3)
       end
-      sleep(3)
+    when "clear", "c"
+      clear()
+    when "help", "h"
+      helpMenu()
+    else
+      puts "Sorry that doesnt seem to be a command, type 'help' to see available commands"
     end
-  when "clear", "c"
-    clear()
-  when "help", "h"
-    helpMenu()
-  else
-    puts "Sorry that doesnt seem to be a command, type 'help' to see available commands"
-  end
   rescue => e
     puts "#{e.class}: #{e.message}"
   end

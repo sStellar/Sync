@@ -9,10 +9,13 @@ class FileObserver
     @edited_files = []
     @yaml_data = {}
   end
-
-  def getFiles()
+  attr_reader :all_files
+  attr_reader :mod_times
+  attr_reader :edited_files
+  
+  def getFiles(spec_dir = "**/*")
     @all_files = []
-    Dir.glob('**/*').each do |cur_file|
+    Dir.glob(spec_dir).each do |cur_file|
       if File.file?(cur_file)
         @all_files << cur_file
       end
@@ -63,33 +66,4 @@ class FileObserver
     File.open("data.yaml", "w") { |file| file.write(save_data.to_yaml) }
   end
 
-  def allFilesThread()
-    Thread.new do
-      puts "Files inventory thread started."
-      while true
-        getFiles()
-        sleep(3)
-      end
-    end
-  end
-
-  def modTimesThread()
-    Thread.new do
-      puts "Mod times thread started."
-      while true
-        getModTimes()
-        sleep(3)
-      end
-    end
-  end
-
-  def editedThread()
-    Thread.new do
-      puts "Edited files thread started."
-      while true
-        getEdited()
-        sleep (3)
-      end
-    end
-  end
 end

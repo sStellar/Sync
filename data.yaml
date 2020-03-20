@@ -1,14 +1,4 @@
 ---
-:file_data:
-- README.md
-- sub/subfile.txt
-- print.rb
-- data.yaml
-- FileObserver.rb
-:mod_data:
-  README.md: 2020-01-30 16:35:44.990010321 +01:00
-  sub/subfile.txt: 2020-02-11 23:22:18.767439992 +01:00
-  print.rb: 2020-02-02 12:10:45.860765036 +01:00
-  data.yaml: 2020-02-21 15:13:32.373102350 +01:00
-  FileObserver.rb: 2020-02-21 15:13:51.546436897 +01:00
+:file_data: []
+:mod_data: {}
 :edited_data: []
