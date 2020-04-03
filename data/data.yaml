@@ -1,4 +1,14 @@
 ---
-:file_data: []
+:file_data:
+- "../README.md"
+- "../src/gui.rb"
+- "../src/print.rb"
+- "../src/FileObserver.rb"
+- "../src/main_term.rb"
+- "../fxruby-code.zip"
+- "../data/data.yaml"
+- "../example/sub/subfile.txt"
+- "../example/aaa"
+- "../example/text.txt"
 :mod_data: {}
 :edited_data: []
