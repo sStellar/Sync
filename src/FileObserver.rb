@@ -3,7 +3,7 @@ require_relative 'print'
 
 class FileObserver
 
-  def initialize(spec_dir = "../**/*")
+  def initialize(spec_dir = "**/*")
     @all_files = []
     @mod_times = {}
     @edited_files = []
@@ -12,19 +12,15 @@ class FileObserver
     @new_files = []
     @del_files = []
 
-    @pwd = Dir.pwd.chomp("src")
+    @pwd = Dir.pwd
   end
-  attr_reader :all_files
-  attr_reader :mod_times
-  attr_reader :edited_files
-  attr_reader :new_files
-  attr_reader :del_files
+
+  attr_reader :all_files, :mod_times, :edited_files, :new_files, :del_files
 
   def getFiles()
     @all_files = []
     Dir.glob(@spec_dir).each do |cur_file|
       if File.file?(cur_file)
-        cur_file.slice!("../")
         @all_files << cur_file
       end
     end
@@ -87,10 +83,7 @@ class FileObserver
         i += 1
       end
 
-
-
-
-      #del files loop
+      # del files loop
       i = 0
       sub_i = 0
       while i < new_file_inv.length
@@ -108,25 +101,11 @@ class FileObserver
         end
         i += 1
       end
-=begin
 
-      puts "_______________________________________________________"
-
-      puts "mod times:"
-      print_h getModTimes()
-      puts "edited:"
-      p getEdited()
-      puts "nfv:"
-      p new_file_inv
-      puts "new:"
-      p @new_files
-      puts "del:"
-      p @del_files
-=end
     end
     t.join
   end
-  def readData(dir = '../data/data.yaml')
+  def readData(dir = 'data/data.yaml')
     @yaml_data = YAML.load(File.read(dir))
 
     @all_files = @yaml_data[:file_data]
@@ -143,7 +122,7 @@ class FileObserver
       "mod_data": mod_data,
       "edited_data": edited_data
     }
-    File.open("../data/data.yaml", "w") { |file| file.write(save_data.to_yaml) }
+    File.open("data/data.yaml", "w") { |file| file.write(save_data.to_yaml) }
   end
-
+#
 end
