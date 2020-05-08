@@ -44,7 +44,7 @@ class Gui < FXMainWindow
 
     # ------------------------ FILES TABLE --------------------------- #
 
-    FXLabel.new(matrix, "Files list:")
+    FXLabel.new(matrix, "Files list: #{@spec_dir}")
 
     file_list_frame = FXHorizontalFrame.new(v_frame, :opts => FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL|LAYOUT_TOP, :padding => 0)
     @table = FXTable.new(file_list_frame, :opts => LAYOUT_FILL, :padLeft => 7, :padRight => 10)
@@ -95,8 +95,12 @@ end
 if __FILE__ == $0
   FXApp.new do |main_app|
     gui = Gui.new(main_app, "/home/peter/Sync")
+    begin
+      main_app.create
+      main_app.run
+    rescue IndexError => e
+      retry
+    end
 
-    main_app.create
-    main_app.run
   end
 end
