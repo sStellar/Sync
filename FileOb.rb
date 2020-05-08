@@ -58,6 +58,7 @@ class FileOb
       File.read(spec_dir)
     rescue Errno::ENOENT => e
       puts e
+      puts "No such file: #{spec_dir}!"
       return false
     end
     File.open(spec_dir, "w") { |file| file.write(save_data.to_yaml) }
