@@ -8,6 +8,7 @@ class FileOb
     @file_inv = {}
     @new_files = []
     @edited_files = []
+    @del_files = []
   end
 
   attr_reader :spec_dir, :file_inv, :new_files, :edited_files, :yaml_data
@@ -28,6 +29,17 @@ class FileOb
         @file_inv[file] = mtime
       end
     end
+
+    # -------- Deleted Files loop --------
+    @file_inv.each do |file, time| # Time isn't used
+      if !files.include?(file)
+        if !@del_files.include?(file)
+          @del_files << file
+        end
+        @file_inv.delete(file)
+      end
+    end
+
     return @file_inv
   end
 
@@ -40,6 +52,7 @@ class FileOb
       @file_inv = @yaml_data[:inv_data]
       @new_files = @yaml_data[:new_data]
       @edited_files = @yaml_data[:edited_data]
+      @del_files = @yaml_data[:del_data]
     rescue NoMethodError => e
       puts "No data to read"
       return false
@@ -52,7 +65,8 @@ class FileOb
     save_data = {
       "inv_data": @file_inv,
       "new_data": @new_files,
-      "edited_data": @edited_files
+      "edited_data": @edited_files,
+      "del_data": @del_files
     }
     begin
       File.read(spec_dir)

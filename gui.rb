@@ -5,17 +5,29 @@ include Fox
 
 class Gui < FXMainWindow
 
-  def initialize(main_app, s_d = "../**/*")
-    @spec_dir = s_d
+  def initialize(main_app, s_d = Dir.pwd)
+    # Default dir
+    if ARGV[0] == nil # Nothing there
+      @spec_dir = s_d
+    else # Something as ARGV[0]
+      @spec_dir = ARGV[0]
+    end
+
+    # Data file dir
+    if ARGV[1] == nil # Nothing there
+      @data_dir = Dir.pwd + "/data/data.yaml"
+    else # Something as ARGV[0]
+      @data_dir = ARGV[1]
+    end
     @fileob = FileOb.new(@spec_dir)
-    p Dir.pwd
-    @fileob.read_yaml("/home/peter/Sync/data/data.yaml")
+    p @spec_dir
+    @fileob.read_yaml(@data_dir)
 
     running = true
     logic_t = Thread.new do
       while running
         @fileob.logic_func
-        @fileob.save_yaml
+        @fileob.save_yaml(@data_dir)
         sleep(2)
       end
     end
@@ -56,6 +68,8 @@ class Gui < FXMainWindow
         v_i = 1 # Row text is displayed on, row 0 is "Files list"
         @fileob.file_inv.each do |file, mtime|
           file = file.include?(@spec_dir) ? file.sub(@spec_dir+"/","") : file # Remove directory from file names
+          # If file has spec dir in it, file becomes file without spec dir. If it doesnt, just return file
+          # Not sure when this would be useful but it could be, and it works and was fun so....
           @table.setItemText(v_i, 0, file)
           @table.setItemJustify(v_i, 0, FXTableItem::LEFT)
           @table.setItemText(v_i, 1, mtime.to_s)
@@ -64,7 +78,7 @@ class Gui < FXMainWindow
         end
         @table.fitColumnsToContents(0)
         @table.fitColumnsToContents(1)
-        sleep(2)
+        sleep(1)
       end
     end
 
@@ -82,7 +96,6 @@ if __FILE__ == $0
   FXApp.new do |main_app|
     gui = Gui.new(main_app, "/home/peter/Sync")
 
-    running = true
     main_app.create
     main_app.run
   end

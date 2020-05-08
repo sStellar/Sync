@@ -1,8 +1,19 @@
 ---
-  # inv_data: file_inv in code, always {}
-  # new_data: new_files in code, always []
-  # edited_data: edited_files in code, always []
-
-:inv_data: {}
+:inv_data:
+  "/home/peter/Sync/README.md": 2020-04-03 14:30:22.446975683 +02:00
+  "/home/peter/Sync/FileOb.rb": 2020-05-08 14:32:34.950465263 +02:00
+  "/home/peter/Sync/src/rbuse.c": 2020-04-04 13:45:29.548501286 +02:00
+  "/home/peter/Sync/src/print.rb": 2020-02-02 12:10:45.860765036 +01:00
+  "/home/peter/Sync/src/FileObserver.rb": 2020-04-29 22:06:56.485804370 +02:00
+  "/home/peter/Sync/gui.rb": 2020-05-08 14:44:53.612458484 +02:00
+  "/home/peter/Sync/fxruby-code.zip": 2020-03-06 14:35:45.680638524 +01:00
+  "/home/peter/Sync/data/manual_save.rb": 2020-05-08 14:45:17.460039315 +02:00
+  "/home/peter/Sync/data/data.yaml": 2020-05-08 14:55:49.259173862 +02:00
+  "/home/peter/Sync/example/aaa": 2020-04-25 20:12:14.587845528 +02:00
+  "/home/peter/Sync/example/smh/smh.txt": 2020-04-25 20:13:07.276551342 +02:00
+  "/home/peter/Sync/example/text.txt": 2020-04-25 20:12:14.587845528 +02:00
+  "/home/peter/Sync/example/gcad_gui.rb": 2020-04-29 22:07:34.237317084 +02:00
+  "/home/peter/Sync/Makefile": 2020-04-04 13:24:11.024877883 +02:00
 :new_data: []
 :edited_data: []
+:del_data: []
