@@ -1,5 +1,5 @@
 # For handing work in to teacher
 *.7z
-sub
-subfile.txt
+example
+example/*
 data/data.yaml

@@ -33,12 +33,26 @@ class Gui < FXMainWindow
     p @fileob.new_files
     puts "Edited files:"
     p @fileob.edited_files
+    puts "Deleted files:"
+    p @fileob.del_files
     # ----------------------- APP START ------------------------------ #
     super(main_app, "File Sync", :width => 600, :height => 400)
 
     # --------------------------- FILES FRAME SETUP ---------------------------- #
 
+    text_for_matrix = "Files list: #{@spec_dir}      New Files: #{@fileob.new_files.length}      Edited Files: #{@fileob.edited_files.length}      Deleted Files: #{@fileob.del_files.length}"
+
     main_frame = FXVerticalFrame.new( self, :opts => LAYOUT_FILL )
+    text_matrix = FXMatrix.new( main_frame, 4, MATRIX_BY_COLUMNS )
+    FXLabel.new(text_matrix, text_for_matrix)
+  #  FXLabel.new(text_matrix, "New Files: #{@fileob.new_files.length}\t")
+  #  FXLabel.new(text_matrix, "Edited Files: #{@fileob.edited_files.length}")
+  #  FXLabel.new(text_matrix, "Edited Files: #{@fileob.del_files.length}")
+
+
+
+
+=begin
     files_matrix = FXMatrix.new( main_frame, 1, MATRIX_BY_COLUMNS )
     FXLabel.new(files_matrix, "Files list: #{@spec_dir}")
 
@@ -50,6 +64,7 @@ class Gui < FXMainWindow
 
     deleted_matrix = FXMatrix.new( main_frame, 1, MATRIX_BY_COLUMNS )
     FXLabel.new(deleted_matrix, "Edited Files: #{@fileob.del_files.length}")
+=end
 
     main_table_frame = FXHorizontalFrame.new(main_frame, :padding => 0, :opts => LAYOUT_FILL)
 

@@ -1,4 +1,4 @@
-require_relative "../FileOb.rb"
+require_relative "../src/FileOb.rb"
 x = FileOb.new("/home/peter/Sync")
 
 x.logic_func
@@ -8,4 +8,4 @@ save_data = {
   "edited_data": [],
   "del_data": []
 }
-File.open("data.yaml", "w") { |file| file.write(save_data.to_yaml) }
+File.open("/home/peter/Sync/data/data.yaml", "w") { |file| file.write(save_data.to_yaml) }
