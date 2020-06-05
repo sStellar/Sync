@@ -12,7 +12,7 @@ class Gui < FXMainWindow
     # => If theres nothing in cmd use working dir, if there is use ARGV
 
     # Data file path
-    @data_dir = ARGV[1] == nil ? Dir.pwd + "/data/data.yaml" : ARGV[1]
+    @data_dir = ARGV[1] == nil ? Dir.pwd : ARGV[1]
     # => If theres nothing in cmd use default path, if there is use ARGV
     puts "Paths"
     p @spec_dir
