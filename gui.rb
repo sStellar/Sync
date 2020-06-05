@@ -3,6 +3,8 @@ require_relative "src/print.rb"
 require "fox16"
 include Fox
 
+# Jag tycker att programmet klarar uppgiften väl och snabbt.
+
 class Gui < FXMainWindow
 
   def initialize(main_app)
@@ -45,26 +47,6 @@ class Gui < FXMainWindow
     main_frame = FXVerticalFrame.new( self, :opts => LAYOUT_FILL )
     text_matrix = FXMatrix.new( main_frame, 4, MATRIX_BY_COLUMNS )
     FXLabel.new(text_matrix, text_for_matrix)
-  #  FXLabel.new(text_matrix, "New Files: #{@fileob.new_files.length}\t")
-  #  FXLabel.new(text_matrix, "Edited Files: #{@fileob.edited_files.length}")
-  #  FXLabel.new(text_matrix, "Edited Files: #{@fileob.del_files.length}")
-
-
-
-
-=begin
-    files_matrix = FXMatrix.new( main_frame, 1, MATRIX_BY_COLUMNS )
-    FXLabel.new(files_matrix, "Files list: #{@spec_dir}")
-
-    new_matrix = FXMatrix.new( main_frame, 1, MATRIX_BY_COLUMNS )
-    FXLabel.new(new_matrix, "New Files: #{@fileob.new_files.length}")
-
-    edited_matrix = FXMatrix.new( main_frame, 1, MATRIX_BY_COLUMNS )
-    FXLabel.new(edited_matrix, "Edited Files: #{@fileob.edited_files.length}")
-
-    deleted_matrix = FXMatrix.new( main_frame, 1, MATRIX_BY_COLUMNS )
-    FXLabel.new(deleted_matrix, "Edited Files: #{@fileob.del_files.length}")
-=end
 
     main_table_frame = FXHorizontalFrame.new(main_frame, :padding => 0, :opts => LAYOUT_FILL)
 

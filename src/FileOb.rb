@@ -13,8 +13,8 @@ class FileOb
 
   attr_reader :spec_dir, :file_inv, :new_files, :edited_files, :del_files, :yaml_data
 
-  # Internal: Creates a dict with all the files, in folders and subfolders.
-  #                   Also creates a list with deleted, new, and edited files.
+  # Internal: Creates a dict with all the files, in folders and subfolders and their mod times.
+  #           Also creates a list with deleted, new, and edited files.
   #
   # spec_dir - Directory to find files in
   # files - Array of files in the directory
